@@ -7,3 +7,7 @@ The hub's navigation, purposes, categories, actions, and sorting are in English.
 Chrome validation at 1280 × 1000 and 390 × 844: four cards, loaded images, three/one columns, no horizontal or text overflow. A–Z and Featured sorting work. Screenshots: `news-hero-desktop.jpg`, `news-cards-desktop.jpg`, `news-cards-mobile.jpg`.
 
 No private services, backend data, credentials, or game runtimes were changed.
+
+## Portfolio branding
+
+The breadme wordmark is reused from the public portfolio's rendered header and its OriginalHeader component: Pretendard, 18px, weight 700, -0.36px tracking, and #D97706 for bread. The me suffix is white for this dark header. The portfolio implements the mark as styled text, not an image asset. The logo links to the game hub top; GitHub destinations are explicitly labeled GitHub. Source: https://nana-park.github.io/breadme/.
