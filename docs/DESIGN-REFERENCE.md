@@ -13,3 +13,7 @@ Matched to [Career Workspace](https://nana-park.github.io/job-application-strate
 Game destinations and privacy boundaries are unchanged. Screenshots remain available in an expandable section so the default layout follows the reference's text-first list.
 
 Latest copy uses one purpose-focused sentence per game and the requested genre labels. Action labels distinguish play, result preview, and rules. Implementation-status labels and the old experience notice are removed. User Inyerface is listed separately as an external classroom activity; its original URL was verified on 2026-10-23. Classroom use is confirmed by the user’s conversation and D4/D5 context supplied to this task. No other external game was included without confirmed use.
+
+## Square preview layout
+
+The latest layout uses three columns on desktop, two on tablet, and one on mobile. Each card starts with a 1:1 preview; screenshots use object-fit: contain and neutral padding, so they are neither stretched nor cropped. Game titles, purpose sentences, and actions remain below the preview. The external game uses an original typographic link card rather than a copied screenshot.
