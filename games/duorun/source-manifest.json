@@ -1,0 +1,13 @@
+[
+  {
+    "file": "lib/game.mjs",
+    "unchanged": false,
+    "sha256": "52b834501934cbb13c627c789c290c01117f1a444f514b5ada6727db82d0161e",
+    "change": "Replaced all fixed name examples with synthetic Hangul strings in public copy only."
+  },
+  {
+    "file": "test/game.test.mjs",
+    "unchanged": true,
+    "sha256": "f90578059141ddcd0af788145e15408fbf7d92bd4da6a77bae416505bbf2ed2b"
+  }
+]

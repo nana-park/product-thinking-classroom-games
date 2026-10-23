@@ -1,0 +1,6 @@
+{
+  "files": 28,
+  "findings": [],
+  "syntheticExamples": "Duorun fixed names replaced with synthetic Hangul strings.",
+  "limit": "Pattern scan, not a comprehensive security audit."
+}
