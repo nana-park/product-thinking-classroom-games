@@ -7,3 +7,11 @@
 - Hub: 375, 390, 768 and 1280px widths passed horizontal overflow checks. Desktop/mobile screenshots reviewed.
 - Pattern scan: 23 candidate files; no known key/private-key/email patterns found. Duorun names were subsequently replaced with explicitly synthetic Hangul strings.
 - Original game sites and their deployment settings were not modified.
+
+## Career Workspace style update
+
+- Compared the live Career Workspace page and its published/local index styles before editing.
+- Captured and reviewed the real browser at desktop 1280px and mobile 390px. Mobile document width was 375px, within the viewport.
+- Verified alphabetical sorting and restored default order.
+- Preserved all three destinations; User Inyerface original URL verified. External game code and screenshots were not copied.
+- Screenshots: hub-desktop.jpg, hub-mobile.jpg, hub-mobile-external.jpg.

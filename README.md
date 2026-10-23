@@ -6,7 +6,7 @@ A collection of games used and refined in classroom workshops. Explore how teams
 
 [Open the game collection](https://nana-park.github.io/product-thinking-classroom-games/)
 
-![The classroom game collection](docs/hub-desktop.png)
+![The classroom game collection](docs/hub-desktop.jpg)
 
 | Game | What to explore | Available here |
 |---|---|---|
@@ -39,3 +39,7 @@ To test the Duorun rule engine:
 Student information, classroom records, credentials, databases, and deployment settings are excluded. Third-party User Inyerface code is not included. No unverified learning outcomes, productivity gains, employment claims, or teaching credentials are asserted.
 
 The collection was checked on desktop and mobile. The included Duorun tests pass. See [local verification notes](docs/VERIFICATION.md). No open-source license has been added; public access alone does not grant a reuse license.
+
+## External games used in class
+
+[User Inyerface](https://userinyerface.com/) — Experience confusing interface patterns and discuss what gets in a user’s way. This is an external game, not an original project in this collection. Only the original link is provided; no external game code or screen is copied.
