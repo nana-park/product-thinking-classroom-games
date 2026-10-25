@@ -2480,7 +2480,7 @@
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 #view *{pointer-events:none;tab-size:1}#view [data-action],#view [data-action] *{pointer-events:auto}
-*{box-sizing:border-box;border-style:solid;border-width:0}html,body{margin:0;background:#f8f8f8}body{font-family:Arial,'Malgun Gothic',sans-serif}p{margin:0}button{padding:0;background:none;color:inherit;font:inherit}img{display:block;max-width:100%}body.reader{background:linear-gradient(to bottom,#1169ee 0 var(--reader-banner-height),#f8f8f8 var(--reader-banner-height) 100%);background-attachment:local;min-height:100vh}#stage{position:relative;margin:0 auto}#view{position:absolute;transform-origin:top left}#view>div{width:100%;height:100%}[data-action]:focus-visible{outline:3px solid #e8a92d;outline-offset:4px}[data-action]:focus-visible>*{outline:2px solid #e8a92d}[aria-disabled=true]{cursor:default}body{touch-action:pan-x pan-y;user-select:none}
+*{box-sizing:border-box;border-style:solid;border-width:0}html,body{margin:0;background:#f8f8f8}body{font-family:Arial,'Malgun Gothic',sans-serif}p{margin:0}button{padding:0;background:none;color:inherit;font:inherit}img{display:block;max-width:100%}body.reader{background:linear-gradient(to bottom,#1169ee 0 var(--reader-banner-height),transparent var(--reader-banner-height)),linear-gradient(to right,#ebebeb 0 calc((100% - min(100%,1440px))/2 + min(19.3056vw,278px)),#f8f8f8 0);background-attachment:local;min-height:100vh}#stage{position:relative;margin:0 auto}#view{position:absolute;transform-origin:top left}#view>div{width:100%;height:100%}[data-action]:focus-visible{outline:3px solid #e8a92d;outline-offset:4px}[data-action]:focus-visible>*{outline:2px solid #e8a92d}[aria-disabled=true]{cursor:default}body{touch-action:pan-x pan-y;user-select:none}
 .c0{background-color:#dee1e6}
 .c1{position:relative}
 .c2{width:100%;height:100%}
@@ -3103,7 +3103,9 @@
   // The original prototype has no purchase or view-mode reactions.
   view.querySelectorAll('button,a').forEach(n=>{if(!n.dataset.action){n.setAttribute('aria-disabled','true');n.setAttribute('tabindex','-1')}});
   // CSS backdrop hue compositing leaves a white edge in Chromium; blur the same teaser glyphs directly.
-  view.querySelectorAll('[data-name="블러"]').forEach(overlay=>{const group=overlay.parentElement,teaser=group.previousElementSibling;if(teaser){teaser.style.filter='blur(2px)';overlay.style.visibility='hidden';}});
+  view.querySelectorAll('[data-name="블러"]').forEach(overlay=>{const box=overlay.getBoundingClientRect();view.querySelectorAll('[data-node-id]').forEach(n=>{const c=getComputedStyle(n),r=n.getBoundingClientRect();if(parseFloat(c.fontSize)===13&&c.position==='absolute'&&n.querySelector('p')&&r.left>=box.left-30*scale&&r.left<box.right&&r.top<box.bottom&&r.bottom>box.top){n.style.filter='blur(2px)';}});overlay.style.visibility='hidden';});
+  if(FRAMES[id].h===1199){view.querySelectorAll('[data-node-id]').forEach(n=>{if(getComputedStyle(n).backgroundColor==='rgb(17, 105, 238)'){n.style.left='0';n.style.width='1440px';}});}
+
   // Only the current frame is materialized; the next frame's assets are warmed.
   const next=FRAMES[id].links.find(x=>x.label==='다음 미리보기');if(next){const t=document.getElementById('frame-'+next.destination);for(const img of t.content.querySelectorAll('img')){const preload=new Image();preload.src=img.getAttribute('src');}}
  }
