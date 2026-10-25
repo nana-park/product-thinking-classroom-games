@@ -1,0 +1,34 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="ICON &#235;&#130;&#152;&#236;&#185;&#168;&#235;&#176;&#152;">
+<g id="Group 73">
+<path id="Ellipse 2" d="M48.75 24.5C48.75 37.8929 37.8929 48.75 24.5 48.75C11.1071 48.75 0.25 37.8929 0.25 24.5C0.25 11.1071 11.1071 0.25 24.5 0.25C37.8929 0.25 48.75 11.1071 48.75 24.5Z" fill="#F0EFEE" stroke-width="0.5" stroke="#C5C5C6"/>
+<circle id="Ellipse 3" cx="24.5" cy="24.5" r="20.5" fill="url(#paint0_radial_0_110)"/>
+</g>
+<g id="Group 74">
+<path id="Ellipse 4" d="M41.75 24.5C41.75 34.0269 34.0269 41.75 24.5 41.75C14.9731 41.75 7.25 34.0269 7.25 24.5C7.25 14.9731 14.9731 7.25 24.5 7.25C34.0269 7.25 41.75 14.9731 41.75 24.5Z" stroke-width="0.5" stroke="#E6EDF5"/>
+<path id="Line 26" d="M24.25 7V10M24.25 39V42" stroke-width="0.5" stroke="#E6EDF5"/>
+<path id="Line 27" d="M7.5 24.25H10.2396M38.7335 24.25H41.5" stroke-width="0.5" stroke="#E6EDF5"/>
+<path id="Line 32" d="M20.5 10.5376L19.8586 8.14376" stroke-width="0.5" stroke="#E6EDF5"/>
+<path id="Line 33" d="M28.5415 7.86475L27.8353 10.5002M20.4038 38.2351L19.6122 41.1892" stroke-width="0.5" stroke="#E6EDF5"/>
+<path id="Line 34" d="M36.8428 17.4639L39.5797 15.8837M9.875 33.0337L11.9877 31.8139" stroke-width="0.5" stroke="#E6EDF5"/>
+<path id="Line 35" d="M37 31.5887L39.5029 33.0337M9.625 15.7837L12.2295 17.2874" stroke-width="0.5" stroke="#E6EDF5"/>
+<path id="Line 36" d="M38.5 27.7973L41.4891 28.5982M8.16467 19.6689L10.7565 20.3634" stroke-width="0.5" stroke="#E6EDF5"/>
+<path id="Line 37" d="M38.2357 20.5873L41.0657 19.829M7.74121 28.7583L10.5 28.0191" stroke-width="0.5" stroke="#E6EDF5"/>
+<path id="Line 30" d="M31.4283 12L32.7834 9.65279M15.7834 39.0977L17.1261 36.7722" stroke-width="0.5" stroke="#E6EDF5"/>
+<path id="Line 31" d="M16.2166 9.5752L17.6165 12M32 36.9129L33.3666 39.2799" stroke-width="0.5" stroke="#E6EDF5"/>
+<path id="Line 28" d="M12.3024 36.3442L14.1466 34.5M34.5 14.1466L36.344 12.3026" stroke-width="0.5" stroke="#E6EDF5"/>
+<path id="Line 29" d="M12.6559 12.3027L14.5 14.1468M34.8531 34.5L36.6975 36.3444" stroke-width="0.5" stroke="#E6EDF5"/>
+<path id="Line 38" d="M28.2372 38.4209L29.1859 41.267" stroke-width="0.5" stroke="#E6EDF5"/>
+</g>
+<path id="Polygon 4" d="M36.6166 11.9451C36.7074 11.8805 36.82 11.9906 36.7573 12.0828L26.8169 26.7131C26.7819 26.7646 26.7088 26.772 26.6643 26.7284L22.1948 22.3555C22.1503 22.3119 22.156 22.2387 22.2068 22.2025L36.6166 11.9451Z" fill="#FC0307"/>
+<path id="Polygon 5" d="M12.0791 36.7057C11.9868 36.7683 11.8768 36.6556 11.9416 36.5648L22.2154 22.1667C22.2516 22.116 22.3248 22.1104 22.3683 22.155L26.7361 26.6294C26.7797 26.6739 26.7723 26.747 26.7207 26.782L12.0791 36.7057Z" fill="#FDF3EF"/>
+<path id="Polygon 6" d="M26.7361 26.6294L25.6336 25.5L12.0987 36.6231C12.0742 36.6433 12.0957 36.6825 12.1259 36.6726C12.1285 36.6718 12.1309 36.6706 12.1331 36.6691L26.7206 26.782C26.7722 26.7471 26.7796 26.674 26.7361 26.6294Z" fill="#D9D9D9"/>
+</g>
+<defs>
+<radialGradient id="paint0_radial_0_110" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(24.5 24.5) rotate(90) scale(20.5)">
+<stop stop-color="#00AECF"/>
+<stop offset="0.604167" stop-color="#00A1CE"/>
+<stop offset="1" stop-color="#1577F8"/>
+</radialGradient>
+</defs>
+</svg>
