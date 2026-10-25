@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>Group 3 · 도서 미리보기</title><style>@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/inter-latin-wght-normal.woff2') format('woff2')}
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>Random Preview</title><style>@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/inter-latin-wght-normal.woff2') format('woff2')}
 @font-face{font-family:'Montserrat';font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/montserrat-latin-wght-normal.woff2') format('woff2')}
 /* noto-sans-kr-[0]-400-normal */
 @font-face {
@@ -2480,7 +2480,7 @@
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 #view *{pointer-events:none;tab-size:1}#view [data-action],#view [data-action] *{pointer-events:auto}
-*{box-sizing:border-box;border-style:solid;border-width:0}html,body{margin:0;background:#f8f8f8}body{font-family:Arial,'Malgun Gothic',sans-serif}p{margin:0}button{padding:0;background:none;color:inherit;font:inherit}img{display:block;max-width:100%}#stage{position:relative;margin:0 auto}#view{position:absolute;transform-origin:top left}#view>div{width:100%;height:100%}[data-action]:focus-visible{outline:3px solid #e8a92d;outline-offset:4px}[data-action]:focus-visible>*{outline:2px solid #e8a92d}[aria-disabled=true]{cursor:default}body{touch-action:pan-x pan-y;user-select:none}
+*{box-sizing:border-box;border-style:solid;border-width:0}html,body{margin:0;background:#f8f8f8}body{font-family:Arial,'Malgun Gothic',sans-serif}p{margin:0}button{padding:0;background:none;color:inherit;font:inherit}img{display:block;max-width:100%}body.reader{background:linear-gradient(to bottom,#1169ee 0 var(--reader-banner-height),#f8f8f8 var(--reader-banner-height) 100%);background-attachment:local;min-height:100vh}#stage{position:relative;margin:0 auto}#view{position:absolute;transform-origin:top left}#view>div{width:100%;height:100%}[data-action]:focus-visible{outline:3px solid #e8a92d;outline-offset:4px}[data-action]:focus-visible>*{outline:2px solid #e8a92d}[aria-disabled=true]{cursor:default}body{touch-action:pan-x pan-y;user-select:none}
 .c0{background-color:#dee1e6}
 .c1{position:relative}
 .c2{width:100%;height:100%}
@@ -3094,8 +3094,11 @@
  let current,scale=1,drag,transitioning=false;
  const valid=id=>Object.prototype.hasOwnProperty.call(FRAMES,id);
  const readHash=()=>{const id=decodeURIComponent(location.hash.slice(1));return valid(id)?id:start};
- function fit(){const f=FRAMES[current],framed=f.w===1600,w=1440,h=framed?(f.h===1199?1022:2273):f.h;scale=Math.min(1,document.documentElement.clientWidth/w);view.style.width=f.w+'px';view.style.height=f.h+'px';view.style.transform=`scale(${scale}) translate(${framed?-80:0}px,${framed?-105:0}px)`;stage.style.width=w*scale+'px';stage.style.height=h*scale+'px';stage.style.overflow='hidden';}
- function render(id){current=id;view.innerHTML=document.getElementById('frame-'+id).innerHTML;view.dataset.frame=id;view.querySelectorAll('[data-name^="Safari"]').forEach(n=>n.remove());view.querySelectorAll('[data-name="Desktop - 6"]').forEach(n=>n.style.borderRadius="0");document.title='Group 3 · 도서 미리보기';fit();
+ function fit(){const f=FRAMES[current],framed=f.w===1600,w=1440,h=framed?(f.h===1199?1022:2273):f.h;scale=Math.min(1,document.documentElement.clientWidth/w);view.style.width=f.w+'px';view.style.height=f.h+'px';view.style.transform=`scale(${scale}) translate(${framed?-80:0}px,${framed?-105:0}px)`;stage.style.width=w*scale+'px';stage.style.height=h*scale+'px';stage.style.overflow='hidden';document.body.style.setProperty('--reader-banner-height',116*scale+'px');}
+ function render(id){current=id;view.innerHTML=document.getElementById('frame-'+id).innerHTML;view.dataset.frame=id;view.querySelectorAll('[data-name^="Safari"]').forEach(n=>n.remove());view.querySelectorAll('[data-name="Desktop - 6"]').forEach(n=>n.style.borderRadius="0");document.title='Random Preview';fit();
+  if(FRAMES[id].h===1199){view.querySelectorAll('[data-name="Desktop - 6"]').forEach(n=>{n.style.top='105px';n.style.left='80px';n.style.width='1440px';n.style.height='1022px'});view.querySelectorAll('[data-name="미리보기"]').forEach(n=>{if(n.offsetWidth===466){n.style.top='167px';n.style.height='769px'}});view.querySelectorAll('[data-name="새로고침"]').forEach(n=>{n.style.left='1120px';n.style.top='595px';n.style.width='99.756px';n.style.height='134px'});}
+  document.body.classList.toggle('reader',FRAMES[id].h===1199);
+  document.body.style.setProperty('--reader-banner-height',116*scale+'px');
   for(const l of FRAMES[id].links){const n=view.querySelector(`[data-node-id="${l.id}"]`);if(!n)continue;n.setAttribute('role','button');n.setAttribute('tabindex','0');n.setAttribute('aria-label',l.label);n.dataset.action=l.id;}
   // The original prototype has no purchase or view-mode reactions.
   view.querySelectorAll('button,a').forEach(n=>{if(!n.dataset.action){n.setAttribute('aria-disabled','true');n.setAttribute('tabindex','-1')}});
