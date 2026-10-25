@@ -50,3 +50,5 @@ body.hub{background:#080808;color:#fff}.hub .game-hero::after{content:"";positio
 @media(max-width:767px){.strategy-visual .persona-crop img{top:-53%}}
 
 .duorun-visual .duo-screen{width:100%;height:100%;left:0;top:0;object-fit:contain;background:#f4f5ef}
+
+.research-visual img{width:100%;height:100%;left:0;top:0;object-fit:cover;object-position:center}
