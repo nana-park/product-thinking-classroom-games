@@ -8,9 +8,11 @@ let state = {runs:[],current:null,landing:false};
 const nav = performance.getEntriesByType('navigation')[0];
 try { if(nav?.type === 'reload') state = JSON.parse(sessionStorage.getItem(KEY)) || state; } catch { $('#storage-status').textContent='저장 공간을 사용할 수 없어 새로고침하면 기록이 사라집니다. 결과를 내려받으세요.'; }
 function save(){try{sessionStorage.setItem(KEY,JSON.stringify(state));}catch{$('#storage-status').textContent='기록은 현재 화면에서만 유지됩니다. 나가기 전에 내려받으세요.';}}
+const collector=TransferPostHog.create(window.TransferCollectionConfig,TransferPostHog.context(location.search));
+if(state.collectionChoice===true)collector.enable();
 function current(){return state.runs.find(r=>r.id===state.current);}
 function elapsed(r){return Math.max(0,(r.endedAt || Date.now())-r.startedAt);}
-function event(type,code){const r=current();r.events.push({type,step:r.step,elapsedMs:elapsed(r),...(code?{code}:{})});save();}
+function event(type,code){const r=current();r.events.push({type,step:r.step,elapsedMs:elapsed(r),...(code?{code}:{})});save();collector.record(r,r.events[r.events.length-1],r.events.length-1);}
 function start(forced){if(current()?.status==='running')return;
 const id=crypto.randomUUID();let exposure=null;const variant=forced||TransferCore.assign(id,e=>{exposure=e;});
 const r={schemaVersion:1,experimentId:EXP,id,assignmentSource:forced?'teacher':'growthbook-1.8.0',variant,mode:forced?'teacher_preview':state.runs.length?'repeat':'first_run',status:'running',startedAt:Date.now(),endedAt:null,step:variant==='A'?'bank':'account',bank:null,accountValid:false,amountValid:false,events:[]};
@@ -42,7 +44,15 @@ $('#send')?.addEventListener('click',()=>finish('completed'));}
 function result(r){return {layoutVersion:'mobile-v2-amount',schemaVersion:1,experimentId:EXP,id:r.id,assignmentSource:r.assignmentSource,variant:r.variant,mode:r.mode,status:r.status,elapsedMs:elapsed(r),errors:r.events.filter(e=>e.type==='error').length,backtracks:r.events.filter(e=>e.type==='backtrack').length,events:r.events};}
 function download(r){const blob=new Blob([JSON.stringify(result(r),null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`transfer-${r.mode}-${r.id}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 
-$('#next').onclick=()=>{state.landing=true;save();render();window.scrollTo(0,0);};
+const introMarkup=$('#intro').innerHTML;
+function enter(){$('#intro').innerHTML=introMarkup;$('#next').onclick=next;state.landing=true;save();render();window.scrollTo(0,0);}
+function next(){
+ if(!collector.available()||state.collectionChoice!==undefined)return enter();
+ $('#intro').innerHTML='<p class="eyebrow">체험 기록 안내</p><h1>기록 전송을<br>선택해 주세요</h1><p>수업 분석을 위해 임의 체험 ID, A/B 배정, 단계·완료·중단, 경과 시간, 오류·되돌아가기를 PostHog(미국)에 전송하고 1년 보관합니다.</p><p>이름·이메일·입력 원문·화면 녹화는 수집하지 않습니다. 요청 처리 과정에서 서비스에 IP가 전달되지만 이벤트 기록에는 저장하지 않도록 설정합니다.</p><p>동의하지 않아도 같은 체험과 JSON 내려받기를 이용할 수 있습니다. 전송 실패 시 결과 파일을 보관해 주세요.</p><div class="intro-bottom"><button id="collect-yes" class="primary">동의하고 체험하기</button><button id="collect-no">전송 없이 체험하기</button></div>';
+ $('#collect-yes').onclick=()=>{state.collectionChoice=true;collector.enable();enter();};
+ $('#collect-no').onclick=()=>{state.collectionChoice=false;enter();};
+}
+$('#next').onclick=next;
 document.addEventListener('visibilitychange',()=>{if(current()?.status==='running')event(document.hidden?'page_hidden':'page_visible');});
 save();render();
 })();

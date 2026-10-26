@@ -1,0 +1,17 @@
+const assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');
+const c=vm.createContext({URLSearchParams});vm.runInContext(fs.readFileSync(__dirname+'/posthog-adapter.js','utf8'),c);
+const P=c.TransferPostHog,ctx=P.context('?classroom=classA&session=lesson7&synthetic=1');
+const run={id:'00000000-0000-4000-8000-000000000001',variant:'B',mode:'first_run',status:'completed',events:[{type:'error'}]};
+const e={type:'completion',step:'confirm',elapsedMs:23000,raw:'PRIVATE'};
+(async()=>{let loads=0,captures=[],options;
+const a=P.create({enabled:true,ipDiscardVerified:true,token:'phc_SYNTHETICONLY'},ctx,{load:async()=>{loads++;return {default:{init:(t,o)=>{options=o;},capture:(n,p)=>captures.push([n,p])}};}});
+a.record(run,e,1);assert.equal(loads,0);assert.equal(captures.length,0);
+await a.enable();a.record(run,e,1);assert.equal(captures.length,1);assert.equal(captures[0][1].synthetic,true);
+assert.equal(options.autocapture,false);assert.equal(options.person_profiles,'never');assert.equal(options.disable_session_recording,true);assert.equal(options.persistence,'memory');assert.equal(options.advanced_disable_flags,true);
+const cleaned=options.before_send({event:'transfer_completion',properties:{...captures[0][1],$current_url:'PRIVATE',$ip:'PRIVATE',email:'PRIVATE',raw:'PRIVATE'}});
+assert(!JSON.stringify(cleaned).includes('PRIVATE'));assert.equal(cleaned.properties.distinct_id,run.id);assert.equal(cleaned.properties.$insert_id,run.id+':1');assert.equal(options.before_send({event:'$pageview',properties:{}}),null);
+assert.equal(P.payload(run,{...e,type:'bank_selected'},2,ctx),null);
+assert.equal(P.context('?classroom=%3Cscript%3E').classroom,'day7');
+const blocked=P.create({enabled:true,ipDiscardVerified:false,token:'phc_SYNTHETICONLY'},ctx,{load:()=>{throw Error('must not load');}});assert.equal(await blocked.enable(),false);
+console.log('PASS consent gate, config/IP gate, event/property allowlist, synthetic split, stable event ID, disabled automatic capture (stub SDK; no transmission)');
+})().catch(e=>{console.error(e);process.exitCode=1});
