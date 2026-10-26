@@ -22,3 +22,6 @@ The whole sequence/choice-count bundle changes, not one isolated element. Small 
 ## Verification
 node transfer-lab/test-amount.cjs verifies both amount flows, validation, back/restart, export and version separation using the actual app handlers and synthetic DOM/clock fixtures.
 node transfer-lab/test.cjs verifies 100 stable assignments, local callbacks and zero network calls; parser malformed/schema/experiment/ID/count/time/oversize/duplicate/exclusion/summary cases. Generated evidence is ignored and must not be published. UI checks use 390x844 portrait and 390x420 keyboard-height emulation. Physical keyboard/notch behavior still needs real-device testing.
+
+## Instructor-only fixed demonstration
+Open facilitator.html?demo=1 to show 15 synthetic records immediately (A 8, B 7). The page says 수업용 가상 데이터 · 15명 · 실제 응답 아님, hides import/preview controls, and reloads the same fixed examples. Normal facilitator.html still starts empty. Demo records have synthetic:true and the ordinary importer rejects them; no samples are merged into real imports. This example is not statistical evidence.
