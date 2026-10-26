@@ -21,3 +21,5 @@ jobs:
         run: node transfer-lab/test.cjs
       - name: Verify shared amount entry and exports
         run: node transfer-lab/test-amount.cjs
+      - name: Verify consent gate and telemetry allowlist
+        run: node transfer-lab/test-posthog.cjs
