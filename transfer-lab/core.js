@@ -1,0 +1,10 @@
+(function(root){
+'use strict';
+const experiment={key:'transfer-flow-v2',variations:['A','B'],weights:[0.5,0.5],hashAttribute:'id'};
+function assign(id,onExposure){const gb=new root.growthbook.GrowthBook({attributes:{id},trackingCallback:(exp,result)=>onExposure({experimentId:exp.key,variationId:result.variationId,variant:result.value})});const result=gb.run(experiment);gb.destroy();if(!result.inExperiment)throw Error('Assignment unavailable');return result.value;}
+const modes=['first_run','repeat','teacher_preview'],statuses=['running','completed','abandoned'];
+function parse(text){if(text.length>1000000)throw Error('too_large');const r=JSON.parse(text);if(!r||r.schemaVersion!==1||r.experimentId!==experiment.key||!/^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$/.test(r.id)||!['A','B'].includes(r.variant)||!modes.includes(r.mode)||!statuses.includes(r.status)||!Number.isFinite(r.elapsedMs)||r.elapsedMs<0||r.elapsedMs>604800000||!Number.isInteger(r.errors)||r.errors<0||r.errors>10000||!Number.isInteger(r.backtracks)||r.backtracks<0||r.backtracks>10000||!Array.isArray(r.events)||r.events.length>10000)throw Error('invalid_result');return {schemaVersion:1,experimentId:experiment.key,id:r.id,variant:r.variant,mode:r.mode,status:r.status,elapsedMs:r.elapsedMs,errors:r.errors,backtracks:r.backtracks};}
+function ingest(map,text){const r=parse(text);if(map.has(r.id))return 'duplicates';map.set(r.id,r);return 'accepted';}
+function summarize(map){const all=[...map.values()],first=all.filter(r=>r.mode==='first_run');return {first:first.length,excluded:all.length-first.length,groups:['A','B'].map(variant=>{const rows=first.filter(r=>r.variant===variant),done=rows.filter(r=>r.status==='completed'),times=done.map(r=>r.elapsedMs/1000).sort((a,b)=>a-b),n=times.length;return {variant,count:rows.length,completed:done.length,median:n?(times[Math.floor((n-1)/2)]+times[Math.floor(n/2)])/2:null,min:n?times[0]:null,max:n?times[n-1]:null,errors:rows.reduce((s,r)=>s+r.errors,0),backtracks:rows.reduce((s,r)=>s+r.backtracks,0)};})};}
+root.TransferCore={experiment,assign,parse,ingest,summarize};
+})(globalThis);
