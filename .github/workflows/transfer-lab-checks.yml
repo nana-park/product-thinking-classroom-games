@@ -19,3 +19,5 @@ jobs:
           node --check transfer-lab/core.js
       - name: Verify local allocation and result parsing
         run: node transfer-lab/test.cjs
+      - name: Verify shared amount entry and exports
+        run: node transfer-lab/test-amount.cjs
